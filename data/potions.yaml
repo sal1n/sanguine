@@ -1,0 +1,48 @@
+# potions.yaml
+# 
+# name:         must be unique
+#
+# @todo complete this example definition, for now just work out from below
+#
+---
+-   name: Potion of Cure Light Wounds
+    unknown_name: Green Potion
+    description: 'This potion heals you slightly'
+    weight: 5 # maybe have no two-handed weapons, just strength requirement for weight?
+    value: 10
+    frequency: 1.0
+    min_level: 1
+    max_level: 10
+    on_self:
+        -   name: 'Giant Strength'
+            description: "You feel stronger!"
+            indirect_description: "<agent> feel stronger!"
+            strength: 10
+            duration: 1d5
+        -   heal: 2d100
+            duration: instant
+            description: "You feel better"
+            indirect_description: "<agent> feel better!"
+        -   physical: 50
+            duration: 10
+            name: Armour
+    tile: 480
+-   name: Potion of Firebomb
+    unknown_name:  Red Potion
+    description: 'This potion heals you slightly'
+    weight: 5 # maybe have no two-handed weapons, just strength requirement for weight?
+    value: 10
+    frequency: 1.0
+    min_level: 1
+    max_level: 10
+    on_self:
+        -   damage_health: 2d300 fire
+            duration: instant
+            radius: 2
+            description: "The explosion from the firebomb <dmg_desc> <agent> <health_dmg>."
+            indirect_description: "The explosion <dmg_desc> <agent> <health_dmg>."
+    weight: 0.1
+    value: 100
+    frequency: 1.0
+    min_threat: 1
+    tile: 480

@@ -1,0 +1,18 @@
+# amulets.yaml
+# 
+# name:         must be unique
+#
+# @todo complete this example definition, for now just work out from below
+#
+---
+-   name: Shield
+    unknown_name:  Shield
+    description: 'A basic shield'
+    unknown_description: 'A shield'
+    slot: k
+    weight: 5
+    value: 10
+    frequency: 1.0
+    min_threat: 1
+    tile: 480
+

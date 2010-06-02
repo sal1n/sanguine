@@ -1,0 +1,39 @@
+1.	ensure all commands work - throw etc.  check indirect damage from throwing firebombs.
+2.  map spawning.
+2.5 sort fov on map change. 
+3.  create items and mobs.
+4.  death screen.
+5.	improve map generation code.
+6.	reduce explosion timing.
+
+
+1.  death screen - handle.
+6.5 allow user to change screen size + tileset properly.
+3.  much better Font suport/handling!!!
+   - custom font paths - on all os/s
+ 	- so far just a being/rescue clause is used for font loading with default_font_name
+4.  much nicer save/load - allow duplicate names, show character information etc.
+5.  rescue clauses on loads!!!!  and images!!! and fonts!!!!
+8.  reduced character stats?  put all on other screen?  just show health/mana/effects?
+1.  location throwing/fire at.  need to decide how to handle misses etc.
+2.  graphics for missile/bolts/cones etc.  need to decide on graphics handling.
+3.  classes document and tidy!  started [agent, ai, creature done]
+4.  Tiles - creatures & items & locations
+5.  Player death!
+11.  game content - creatures, items, maps, images!!! BIG JOB but can do tired.
+12. repeated actions - space bar.
+16.  handle window.write text wrapping!
+3.  spells
+5.  proximity function!
+6.  mutations
+7.  gods
+8.  transparent tiles
+
+Blunderbuss - arc of fire
+powersource
+dwarf fuel?
+warpsstone
+engineer.
+off hand / shield set
+
+

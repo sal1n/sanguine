@@ -1,0 +1,57 @@
+===============================================================================
++=============================+++  Sanguine  +++==============================+
+===============================================================================
+
+Sanguine is a Warhammer-themed roguelike game written in Ruby using the Gosu 
+2D graphics library.
+
+To play you need the following installed:
+
+*   Ruby, preferably version 1.9+  [ http://www.ruby-lang.org/en/downloads/ ]
+
+*   Gosu, 'gem install gosu'  [http://www.libgosu.org/]
+
+*   JSL Ancient font installed (it will work without but it looks better with
+ 	the font).  You can find the font file in /resources.
+
+To play simply 'ruby play.rb' from the command line, et voila!
+
+NOTES:
+
+The game is currently unfinished!
+
+1.	To experience combat hang around where you start.  Orcs are unlimited
+    so kill a couple just to get an explosive dagger as an example of AoE 
+	effects.  
+	
+2.	To check out the basic map generation go down the stairs and have a look,
+    the top level is hand-drawn - the rest are procedurally generated.
+
+3.	commands:
+				e = equip
+				g = get
+				d = drop
+				x = view equipment
+				i = view inventory
+				> = go down stairs
+				..
+				look in the relevant state to see what else there is.
+				
+4.	Not sure I've put diagonal movement in yet.  You can't move up stairs.
+
+5.	Graphics aren't final.  Tile Z-Ordering needs sorting.  Walls need proper
+	joining.
+
+6.	Need to do content - creatures and items!
+
+7.	Need to do classes and races!
+
+Game engine is pretty much done, it's mainly tweaking, balancing and content required.
+
+Not entirely sure when I will get around to finishing the game now, but if anyone gets
+any use out of the code I'll be glad.
+
+Have fun.
+
+Steve [steve[at]salin[dot]org]
+June 2010

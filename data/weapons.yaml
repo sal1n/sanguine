@@ -1,0 +1,58 @@
+--- 
+- !ruby/object:Sanguine::Weapon 
+  description: A dagger that explodes on contact!
+  effects: !seq:Sanguine::Effects 
+    - !ruby/object:Sanguine::DamageHealth 
+      amount: !ruby/object:Sanguine::Dice 
+        roll: 1d6
+      apply_on: :strike
+      message: Your slash <dmg_desc> <agent> <health_dmg> <mana_dmg>
+      type: physical
+    - !ruby/object:Sanguine::ModifyStat 
+      amount: !ruby/object:Sanguine::Dice 
+        roll: "20"
+      apply_on: :self
+      stat: :attack
+    - !ruby/object:Sanguine::DamageHealth 
+      amount: !ruby/object:Sanguine::Dice 
+        roll: 1d6
+      apply_on: :strike
+      message: The fireball <dmg_desc> <agent> <health_dmg>.
+      radius: 1
+      type: fire
+  frequency: 1.0
+  max_level: 1
+  min_level: 1
+  name: explosive dagger
+  slot: :j
+  tile: 480
+  unknown_description: This item has not yet been identified.
+  unknown_name: explosive dagger
+  value: 10
+  weight: 5
+  z_order: 2.0
+- !ruby/object:Sanguine::Weapon 
+  description: A basic dagger
+  effects: !seq:Sanguine::Effects 
+    - !ruby/object:Sanguine::DamageHealth 
+      amount: !ruby/object:Sanguine::Dice 
+        roll: 1d6
+      apply_on: :strike
+      message: Your slash <dmg_desc> <agent> <health_dmg> <mana_dmg>
+      type: physical
+    - !ruby/object:Sanguine::ModifyStat 
+      amount: !ruby/object:Sanguine::Dice 
+        roll: "20"
+      apply_on: :self
+      stat: :attack
+  frequency: 1.0
+  max_level: 1
+  min_level: 1
+  name: dagger
+  slot: :j
+  tile: 480
+  unknown_description: This item has not yet been identified.
+  unknown_name: dagger
+  value: 10
+  weight: 5
+  z_order: 2.0

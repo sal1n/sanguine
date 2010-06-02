@@ -1,0 +1,30 @@
+# ammunition.yaml
+# 
+# name:         must be unique
+#
+# @todo complete this example definition, for now just work out from below
+#
+---
+-   name: arrow
+    unknown_name: arrow
+    description: 'A basic dagger'
+    type: arrow
+    amount: 3d6
+    weight: 5 # maybe have no two-handed weapons, just strength requirement for weight?
+    value: 10
+    frequency: 0.4
+    min_level: 1
+    max_level: 10
+    tile: 480
+-   name: bolt
+    unknown_name: bolt
+    description: 'A basic dagger'
+    type: arrow
+    amount: 3d6
+    weight: 5 # maybe have no two-handed weapons, just strength requirement for weight?
+    value: 10
+    frequency: 1.0
+    min_level: 1
+    max_level: 10
+    tile: 480
+

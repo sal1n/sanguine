@@ -1,0 +1,38 @@
+--- 
+- !ruby/object:Sanguine::Creature 
+  ai: !ruby/object:Sanguine::BasicMelee 
+    description: Basic move towards player AI.
+  attack: 10
+  awareness: 1
+  colour: :red
+  defense: 10
+  description: A large {green}green{black} humanoid, smarter and more fierce than the average goblin.
+  exp: 10
+  frequency: 1.0
+  health: 30
+  health_regen: 0.0
+  mana: 0
+  mana_regen: 0.0
+  max_health: 30
+  max_level: 1
+  max_mana: 30
+  melee_attacks: 
+  - !ruby/object:Sanguine::CreatureAttack 
+    effects: !seq:Sanguine::Effects 
+      - !ruby/object:Sanguine::DamageHealth 
+        amount: !ruby/object:Sanguine::Dice 
+          roll: 1d6
+        apply_on: :strike
+        message: The orc hits you <health_dmg>
+        type: physical§
+    frequency: 1.0
+  min_level: 1
+  name: orc
+  ranged_attacks: []
+
+  resistances: 
+    :physical: 0
+  speed: 1
+  strikes: 1
+  threat: 1
+  tile: 73

@@ -1,0 +1,27 @@
+--- 
+- !ruby/object:Sanguine::Race 
+  agility_dice: !ruby/object:Sanguine::Dice 
+    roll: 2d10 + 20
+  attack: 1
+  defense: 1
+  description: The base race.
+  fellowship_dice: !ruby/object:Sanguine::Dice 
+    roll: 2d10 + 20
+  health_dice: !ruby/object:Sanguine::Dice 
+    roll: 2d10 + 20
+  health_regen: 0.0
+  intelligence_dice: !ruby/object:Sanguine::Dice 
+    roll: 2d10 + 20
+  mana_dice: !ruby/object:Sanguine::Dice 
+    roll: 2d10 + 20
+  mana_regen: 0.0
+  name: Human
+  speed: 1
+  stealth: 1
+  strength_dice: !ruby/object:Sanguine::Dice 
+    roll: 2d10 + 20
+  strikes: 1
+  toughness_dice: !ruby/object:Sanguine::Dice 
+    roll: 2d10 + 20
+  willpower_dice: !ruby/object:Sanguine::Dice 
+    roll: 2d10 + 20

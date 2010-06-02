@@ -1,0 +1,20 @@
+# rings.yaml
+# 
+# name:         must be unique
+#
+# @todo complete this example definition, for now just work out from below
+#
+---
+-   name: "Ring of the Troll"
+    unknown_name:  ring
+    description: "This ring gives the wearer troll-like regeneration."
+    unknown_description: "A ring."
+    slot: k
+    on_self:
+        -   health_regen: 1.0
+    weight: 5
+    value: 10
+    frequency: 1.0
+    min_threat: 1
+    tile: 480
+

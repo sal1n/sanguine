@@ -1,0 +1,62 @@
+# ranged_weapons.yaml
+# 
+# name:         must be unique
+#
+# @todo complete this example definition, for now just work out from below
+#
+---
+-   name: Shield
+    unknown_name:  Shield
+    description: 'A basic shield'
+    unknown_description: 'A shield'
+    slot: k
+    effects:
+        -   symbol: physical
+            value:  1
+        -   symbol: defense
+            value: -1
+    weight: 5
+    value: 10
+    frequency: 1.0
+    min_threat: 1
+    tile: 480
+
+    # weapons.yaml
+    # 
+    # name:         must be unique
+    #
+    # @todo complete this example definition, for now just work out from below
+    #
+    # knife, dagger
+    # club, cudgel, warhammer, hammer
+    # mace, flail, morning star
+    # short sword, long sword, broadsword, scimitar
+    # bastard sword, katana, gladius (short), rapier
+    # whip, sabre
+    # hand axe, hatchet, pick axe, battle axe, sickle
+    # scythe
+    # spear, trident, pike, lance
+    # halbard, 2-h sword, great axe
+    # quarterstaff, staff
+    # dwarven chainsaw
+    --- 
+    -   name: dagger
+        unknown_name: "{black}B{red}a{black}n{red}e {black}dagger"
+        description: 'A basic dagger'
+        weight: 5 # maybe have no two-handed weapons, just strength requirement for weight?
+        value: 10
+        frequency: 1.0
+        min_level: 1
+        max_level: 10
+        on_strike: 
+            -   damage_health: 1d4 physical
+                message: "Your slash <dmg_desc> <agent> <health_dmg>."
+            -   damage_health: 1d4 fire 
+            -   damage_mana: 1d6 mana
+            -   effect: Mild Poison 1d6
+            -   effect: Giant Strength 2d6
+        on_throw:
+            -   damage_health: 1d4 + 1 physical
+                message: "Your thrown dagger <dmg_desc> <agent> <health_dmg>."
+        on_self:
+            -   attack: 20

@@ -1,0 +1,28 @@
+# ranged_weapons.yaml
+# 
+# name:         must be unique
+#
+# @todo complete this example definition, for now just work out from below
+#
+---
+-   name: Shortbow
+    unknown_name: shortbow
+    description: 'A basic dagger'
+    weight: 5 # maybe have no two-handed weapons, just strength requirement for weight?
+    value: 10
+    frequency: 2.0
+    min_level: 1
+    max_level: 10
+    target: missile
+    range: 10
+    ammunition: arrow
+    on_fire:
+        -   damage_health: 1d4 + 1 physical 
+            description: "Your shot <dmg_desc> <agent> <health_dmg>."
+        -   damage_mana: 1d6 mana
+        -   damage_health: 2d300 fire
+            duration: instant
+            radius: 2
+            description: "The firearrow explodes!"
+            indirect_description: "The explosion <dmg_desc> <agent> <health_dmg>."
+    tile: 480
