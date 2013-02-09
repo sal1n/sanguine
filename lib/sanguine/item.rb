@@ -72,11 +72,7 @@ module Sanguine
       prefix = self.quantity
       suffix = "s"
     end
-    if self.first.identified?
-      "#{prefix} #{first.name}#{suffix}"
-    else
-      "#{prefix} #{first.unknown_name}#{suffix}"
-    end
+    "#{prefix} #{first.name}#{suffix}"
   end  
  
   
@@ -86,7 +82,7 @@ module Sanguine
   # represents an Item
   class Item < MapObject
 
-    attr_accessor :unknown_name, :unknown_description, :name
+    attr_accessor :name, :description
   
     attr_accessor :slot, :weight, :thrown_damage
     
@@ -95,22 +91,12 @@ module Sanguine
     def initialize
       super
       @z_order = ZOrder::Item
-  
-      # set default unknown description
-      @unknown_description = 'This item has not yet been identified.'
     end
     
     def quantity
       1
     end
     
-    def identified?
-      player.memory.identified?(self)
-    end
-    
-    def identify
-      player.memory.identify(self)
-    end
   #  def name
    #   if @identified
    #     @name.to_s
@@ -118,7 +104,6 @@ module Sanguine
      #   @unknown_name.to_s
     #  end
     #end
-  
    def add(item)
      if item.kind_of?(ItemStack)
        item.add(self)
@@ -130,10 +115,6 @@ module Sanguine
        stack
      end
    end
-   
-    def description
-      self.identified? ? @description : @unknown_description
-    end
   
     def to_s
       prefix = "a"
@@ -141,11 +122,7 @@ module Sanguine
         prefix = "an"
       end
       
-      if self.identified?
-        "#{prefix} #{@name}"
-      else
-        "#{prefix} #{@unknown_name}"
-      end
+    "#{prefix} #{@name}"
     end
   
     def plural_to_s

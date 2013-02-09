@@ -6,7 +6,7 @@ module Sanguine
       
       def initialize
         super
-        @views << View::Character.new
+       @views << View::Character.new
         @views << View::Map.new
         @views << View::Messages.new
       end
@@ -37,10 +37,9 @@ module Sanguine
           game.change_state(Chat.new)
         elsif key.symbol == :l
           game.change_state(Look.new)
-        elsif key.symbol == :portal_up
-          player.portal(:up)
-        elsif key.symbol == :portal_down
-          player.portal(:down)
+        elsif key.symbol == :u
+          player.portal
+          game.advance_phase
         elsif key.symbol == :escape
           game.save
           game.change_state(Menu.new)

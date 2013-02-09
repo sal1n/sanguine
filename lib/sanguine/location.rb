@@ -15,7 +15,7 @@ module Sanguine
   
   class Portal < MapObject
     
-    attr_accessor :destination, :location
+    attr_accessor :destination, :map, :location
     
     def initialize(destination, location)
       @destination = destination

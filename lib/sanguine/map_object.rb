@@ -16,30 +16,6 @@ module Sanguine
     def initialize
       super
     end
-    
-    # used to dynamically add stat methods to the class at runtime
-    def self.add_stats(*stats) 
-      stats.each do |stat|
-        code = %Q{ 
-          def #{stat} 
-            if @#{stat} + modifier('#{stat}'.to_sym) < 0
-              0
-            else
-              @#{stat} + modifier('#{stat}'.to_sym)
-            end
-          end 
-        
-          def #{stat}=(value)
-            @#{stat} = value
-          end
-        
-          def base_#{stat} 
-            @#{stat} 
-          end
-        } 
-        class_eval(code) 
-      end
-    end
 
   end
   

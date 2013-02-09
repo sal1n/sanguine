@@ -6,11 +6,32 @@ module Sanguine
   # @todo consider merging creature and player, a lot of work - need to work 
   # out gain apart from easy polymorph etc..
   #
-  # @todo add_stats is class_eval'd in MapObject, prob want to change and move
-  # to Agent, is this possible?
-  #
   class Agent < MapObject
-  
+    
+    # used to dynamically add stat methods to the class at runtime
+    def self.add_stats(*stats) 
+      stats.each do |stat|
+        code = %Q{ 
+          def #{stat} 
+            if @#{stat} + modifier('#{stat}'.to_sym) < 0
+              0
+            else
+              @#{stat} + modifier('#{stat}'.to_sym)
+            end
+          end 
+        
+          def #{stat}=(value)
+            @#{stat} = value
+          end
+        
+          def base_#{stat} 
+            @#{stat} 
+          end
+        } 
+        class_eval(code) 
+      end
+    end
+    
     # add health stats
     add_stats :health, :max_health, :health_regen
     
@@ -18,7 +39,7 @@ module Sanguine
     add_stats :mana, :max_mana, :mana_regen
     
     # add base stats common to all agents
-    add_stats :attack, :defense, :speed, :strikes, :stealth, :awareness
+    add_stats :attack, :defence, :speed, :strikes, :stealth, :awareness
     
     # every agent has a hash containing any resistances
     attr_accessor :resistances
@@ -80,7 +101,7 @@ module Sanguine
         message.gsub!(/dmg_desc/, "#{Damage.description(damage)}")
         message.gsub!(/<agent>/, "#{if self.kind_of?(Player) then "you" else "the #{@name}" end}")
         if effect.kind_of?(DamageHealth)
-          message.gsub!(/<health_dmg>/, "[{red}#{damage}{black}]")
+          message.gsub!(/<health_dmg>/, "[<c=ff0000>#{damage}</c>]")
           self.take_health_damage(damage, effect.origin)
         elsif effect.kind_of?(DamageMana)
           message.gsub!(/<mana_dmg>/, "[{blue}#{damage}{black}]")
@@ -125,8 +146,7 @@ module Sanguine
             destination.arrive(self)
             # if player is moving then update the FOV
             if player == self
-              game.map.clear_visible
-              game.map.do_fov(destination.x, destination.y, 12)
+
             end
           end
         end
@@ -136,16 +156,11 @@ module Sanguine
     # portal between maps (hack)
     #
     # @todo integrate properly with move?
-    def portal(destination)
-      if self.location.has_portal? && self.location.portal.destination == destination
+    def portal
+      if self.location.has_portal?
         self.location.depart(self)
         self.game.change_map(destination)
-        if destination == :up
-          self.game.map.portals[:down].location.arrive(self)
-        else
-          self.game.map.portals[:up].location.arrive(self)
-        end
-        
+        self.location.portal.location.arrive(self)
       end
     end
     
@@ -156,7 +171,7 @@ module Sanguine
     #
     # @todo this needs reworking for targeting locations etc
     def hit?(agent)
-      if rand < (1.0 - (agent.defense / (3.0 * self.attack)))
+      if rand < (1.0 - (agent.defence / (3.0 * self.attack)))
         true
       else
         false
@@ -244,7 +259,7 @@ module Sanguine
       
       direct_damage_message.gsub!(/<dmg_desc>/, "#{Damage.description(health_damage)}")
       direct_damage_message.gsub!(/<agent>/, "#{if self.kind_of?(Player) then "you" else "the #{@name}" end}")
-      direct_damage_message.gsub!(/<health_dmg>/, "[{red}#{health_damage}{black}]")
+      direct_damage_message.gsub!(/<health_dmg>/, "[<c=ff0000>#{health_damage}</c>]")
       direct_damage_message.gsub!(/<mana_dmg>/, "#{if mana_damage > 0 then "[{blue}]#{mana_damage}{black}]" end}")
       messages << direct_damage_message
       
@@ -286,6 +301,7 @@ module Sanguine
     
     # take health damage, if health falls to 0 or less then the agent dies
     def take_health_damage(amount, origin)
+      puts("takig #{amount} damage, i currently have #{self.health}")
       @health = @health - amount
       if @health <= 0
         self.die!

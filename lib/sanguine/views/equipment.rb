@@ -5,9 +5,7 @@ module Sanguine
     class Equipment < View
       
       def initialize
-        super(Point.new(330, 55))
-        file = File.dirname(__FILE__) + "/../../../resources/background_menu.png"
-        @background = Gosu::Image.new(window, file, false)
+        super(Point.new(40, 40))
       end
 
       def tab
@@ -25,9 +23,9 @@ module Sanguine
       def draw
         super
         
-        # draw background
-        # @todo scale this with window size
-        @background.draw(280, 0, 0)
+        window.draw_box(@location.x - 30, @location.y - 30, Config::ScreenWidth - 20, Config::ScreenHeight - 200, window.gosu_colour(:border))
+        
+
         
         window.write("Equipment",@x, @y)
         newline

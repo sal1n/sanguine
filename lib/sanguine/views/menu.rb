@@ -16,20 +16,20 @@ module Sanguine
         # draw background image
         @background.draw(300, 30, 0)
                 
-        window.write("Choose your fate..", @x, @y, :black, window.fonts[:header])
+        window.write("<c=000000>Choose your fate..</c>", @x, @y, window.fonts[:header])
         newline
         newline
         newline
-        window.write("a )    Create a new character", @x, @y)
+        window.write("<c=000000>a )    Create a new character</c>", @x, @y)
         newline
         newline
-        window.write("b )    Restore a previous game", @x, @y)
+        window.write("<c=000000>b )    Restore a previous game</c>", @x, @y)
         newline
         newline
-        window.write("c )    Don't Panic!", @x, @y)
+        window.write("<c=000000>c )    Configure key bindings</c>", @x, @y)
         newline
         newline
-        window.write("esc )  Leave game", @x, @y)
+        window.write("<c=000000>esc )  Leave game</c>", @x, @y)
       end
       
     end

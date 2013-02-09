@@ -16,15 +16,15 @@ module Sanguine
         # draw background image
         @background.draw(300, 30, 0)
 
-        window.write("Select your race..", @x, @y, :black, window.fonts[:header])
+        window.write("<c=000000>Select your race..</c>", @x, @y, window.fonts[:header])
         newline
         newline
         newline
         index = 0
         game.races.each do |race|
-          window.write("#{keys[index]} )  #{race.name}", @x, @y)
+          window.write("<c=000000>#{keys[index]} )  #{race.name}</c>", @x, @y)
           newline
-          window.write(race.description, @x, @y)
+          window.write("<c=000000> #{race.description}</c>", @x, @y)
           newline
           newline
           index = index + 1

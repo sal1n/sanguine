@@ -16,19 +16,8 @@ module Sanguine
       def draw
       super
        @background.draw(300, 30, 0)
-       window.write("What do you wish to be called?", @x, @y, :black, window.fonts[:header])
+       window.write("<c=000000>What do you wish to be called?</c>", @x, @y, window.fonts[:header])
        @text_field.draw
-       newline
-       newline
-       newline
-       newline
-       newline
-       newline
-       window.write("Care - name must be unique for now else your save games", @x, @y)
-       newline
-       window.write("will be overwritten.", @x, @y)
-       newline
-       window.write("Yes, this will be sorted soon:P", @x, @y)
      end
       
     end
@@ -38,7 +27,7 @@ module Sanguine
 
       # Some constants that define our appearance.
       INACTIVE_COLOR  = 0xcc666666
-      ACTIVE_COLOR    = 0x00000000
+      ACTIVE_COLOR    = 0x00ffffff
       CARET_COLOR     = 0xffffffff
       PADDING = 5
 
@@ -86,7 +75,7 @@ module Sanguine
 
    if @window.text_input == self then
         # Finally, draw the text itself!
-        @window.write(self.text, x, y, :black, @font)
+        @window.write("<c=ffffff>#{self.text}</c>", x, y, @font)
      #   @font.draw(self.text, x, y, 0,1,1)
       end
       end

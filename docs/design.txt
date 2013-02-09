@@ -1,3 +1,6 @@
+ditch stats - what do they add?  add bigger map screen!
+
+
 1.	ensure all commands work - throw etc.  check indirect damage from throwing firebombs.
 2.  map spawning.
 2.5 sort fov on map change. 

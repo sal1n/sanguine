@@ -16,15 +16,15 @@ module Sanguine
         # draw background image
         @background.draw(300, 30, 0)
 
-        window.write("Select your profession..", @x, @y, :black, window.fonts[:header])
+        window.write("<c=000000>Select your profession..</c>", @x, @y, window.fonts[:header])
         newline
         newline
         newline
         index = 0
         game.professions.each do |profession|
-          window.write("#{keys[index]} )  #{profession.name}", @x, @y)
+          window.write("<c=000000>#{keys[index]} )  #{profession.name}</c>", @x, @y)
           newline
-          window.write(profession.description, @x, @y)
+          window.write("<c=000000>#{profession.description}</c>", @x, @y)
           newline
           index = index + 1
         end

@@ -35,7 +35,7 @@ module Sanguine
     end
     
     def generate
-      4.times do |i|
+      1.times do |i|
         map = RandomMap.new(100, 100)
         @maps << map
       end

@@ -122,7 +122,8 @@ module Sanguine
     
     
     def add_agent(agent)
-      self.add_observer(agent)
+      
+      #self.add_observer(agent)
       @agents << agent
     end
     
@@ -134,6 +135,10 @@ module Sanguine
     end
     
     def advance_phase
+      # update FoV
+      @map.clear_visible
+      @map.do_fov(@player.x, @player.y, 12)
+      
       # if active agents can act in this phase then act
       @agents.each do |agent|
         if agent.active? && agent.can_act?

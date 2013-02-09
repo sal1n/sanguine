@@ -19,7 +19,7 @@ module Sanguine
         # get width of amount message for textfield positioning
         width = window.font.text_width(@amount_message)
         # instantiate textfield, this will only become active depending on current state i.e., for amounts
-        @text_field = View::TextField.new(window, window.font, @message_view.location.x + width, @message_view.location.y + 83)
+        @text_field = View::TextField.new(window, window.font, @message_view.location.x + width + 10, @message_view.location.y + 10)
         @views << @text_field
       end
       

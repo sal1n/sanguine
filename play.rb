@@ -1,7 +1,7 @@
 # Copyright (c) 2010 Steve Andrews <sanguine[at]salin[dot]org>
 # All files in this distribution are subject to the terms of the Ruby license.
 
-require 'lib/sanguine'
+require './lib/sanguine'
 require 'yaml'
 
 module Sanguine

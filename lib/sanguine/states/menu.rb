@@ -17,8 +17,6 @@ module Sanguine
           game.change_state(SelectRace.new)
         elsif key.symbol == :b
           game.change_state(LoadGame.new)
-        elsif key.symbol == :c
-          game.change_state(Help.new)
         elsif key.symbol == :escape
           window.close
           puts("Goodbye and thanks for playing!")

@@ -11,8 +11,8 @@ module Sanguine
       
       def command(key)
         if key.has_index? && key.index <= game.professions.length
-          game.professions[key.index].join(player)
-          game.change_state(RollStats.new)
+          player.profession = game.professions[key.index]
+          game.change_state(EnterName.new)
         elsif key.symbol == :escape
           game.change_state(SelectRace.new)
         end

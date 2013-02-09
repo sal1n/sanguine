@@ -39,14 +39,17 @@ module Sanguine
         # try and load the default font - currently JSL Ancient 
         @fonts[:default] = Gosu::Font.new(self, Config::DefaultFont, Config::DefaultFontSize)
         @fonts[:header] = Gosu::Font.new(self, Config::DefaultFont, Config::DefaultFontSize + 8)
+        @fonts[:huge] = Gosu::Font.new(self, Config::DefaultFont, Config::DefaultFontSize + 40)
       rescue
         # ok that failed, try and load the system default
         @fonts[:default] = Gosu::Font.new(self, Gosu::default_font_name, Config::DefaultFontSize)
         @fonts[:header] = Gosu::Font.new(self, Gosu::default_font_name, Config::DefaultFontSize + 8)
+        @fonts[:huge] = Gosu::Font.new(self, Gosu::default_font_name, Config::DefaultFontSize + 40)
       end
       
       # @todo remove this and replace with method
       @font = @fonts[:default]
+      
     end
 
     # load game tiles
@@ -102,30 +105,9 @@ module Sanguine
        self.draw_line(x, y + height, colour, x + width, y + height, colour, z_order)
     end
     
-    # writes a string to screen using custom colouring system
-    # e.g. {red}this text is red and {black}this text is black
-    def write(string, x, y, colour = :black, font = @fonts[:default])
-      new_colour = false
-      c = ""
-      i = 0
-      string.each_char do |char|
-        if char == '{'
-          new_colour = true
-          c = ""
-        elsif char == '}'
-          new_colour = false
-        elsif new_colour
-          c += char
-        else
-          if c.length == 0
-            colour = self.gosu_colour(colour)
-        else
-          colour = self.gosu_colour(c.to_sym)
-        end
-          font.draw(char, x + i, y, ZOrder::Text, 1, 1, colour)
-          i += font.text_width(char)
-        end
-      end
+    
+    def write(string, x, y, font = @fonts[:default])
+      font.draw(string, x, y, ZOrder::Text, 1, 1)
     end
   
     # returns a Gosu::Color for a given colour symbol
@@ -148,6 +130,8 @@ module Sanguine
         Gosu::Color.new(0xff009400)
       elsif symbol == :physical
         Gosu::Color.new(0xff333333)
+      elsif symbol == :border
+          Gosu::Color.new(0xff363638)
       else
         Gosu::Color.new(0xff000000)  # unknown colour defaults to black
       end
@@ -194,7 +178,8 @@ module Sanguine
       elsif id == Gosu::KbX && shift_down then Key.new(:X, 23)
       elsif id == Gosu::KbY && shift_down then Key.new(:Y, 24)
       elsif id == Gosu::KbZ && shift_down then Key.new(:Z, 25)
-      elsif id == 47 && shift_down then Key.new(:portal_down)
+      #elsif id == 43 && shift_down then Key.new(:portal_up)
+      #elsif id == 47 && shift_down then Key.new(:portal_down)
       elsif id == Gosu::KbA then Key.new(:a, 0)
       elsif id == Gosu::KbB then Key.new(:b, 1)
       elsif id == Gosu::KbC then Key.new(:c, 2)

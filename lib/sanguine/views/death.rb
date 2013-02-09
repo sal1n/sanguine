@@ -10,10 +10,10 @@ module Sanguine
       
       def draw
         super
-        window.write("Death comes to us all...", @x, @y, :white)
+        window.write("Death comes to us all...", @x, @y)
         newline
         newline
-        window.write("Press escape to return to the menu", @x, @y, :white)
+        window.write("Press escape to return to the menu", @x, @y)
       end
       
     end

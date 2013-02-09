@@ -5,7 +5,7 @@
   attack: 10
   awareness: 1
   colour: :red
-  defense: 10
+  defence: 10
   description: A large {green}green{black} humanoid, smarter and more fierce than the average goblin.
   exp: 10
   frequency: 1.0

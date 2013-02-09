@@ -2,7 +2,7 @@ module Sanguine
   
   module State
     
-    # this state handles the player entering the name of new characters.
+    # This state handles the player entering the name of new characters.
     #
     # @todo offer random generated name selection
     #
@@ -21,6 +21,8 @@ module Sanguine
             player.name = window.text_input.text
             # stop the text input capturing keys
             window.text_input = nil
+            # create the player! 
+            player.create
             # change state
             game.change_state(Map.new)
           end

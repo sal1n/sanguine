@@ -1,47 +1,39 @@
 module Sanguine
   
-  class Memory
-    
-    def initialize
-      @identified_items = Array.new
-      @log = Hash.new
-    end
-    
-    def identify(item)
-      if ! self.identified?(item)
-        @identified_items << item
-      end
-    end
-    
-    def identified?(item)
-      @identified_items.each do |i|
-        if item.equals?(i)
-          return true
-        end
-      end
-      false
-    end
-  
-  end
-  
-  # represents the Player character in the game
+  # Represents the Player character in the game.
+  #
   class Player < Agent
   
-    attr_accessor :race, :profession, :exp, :total_exp, :level, :inventory, :memory
+    attr_accessor :race, :profession, :exp, :level, :inventory
     
-    add_stats :strength, :toughness, :agility, :intelligence, :willpower, :fellowship
-
     def initialize
       super
       @tile = Tile::Character
       @inventory = Inventory.new
-      @exp = 0
-      @total_exp = 0
-      @level = 1
-      @memory = Memory.new
       @inventory.add(game.items.get_item_by_name("dagger"))
       self.equip(@inventory.first)
       game.add_observer(self) # move to game add_player?
+    end
+    
+    def create
+      @health = 1000.0
+      @max_health = 1000.0
+      @health_regen = 0.1
+      @mana = 10.0
+      @max_mana = 10.0
+      @mana_regen = 0.1
+      @level = 1
+      @exp = 0
+      
+      @attack = @race.attack + @profession.attack
+      @defence = @race.defence + @profession.defence
+      @speed = @race.speed + @profession.speed
+      @strikes = @race.strikes + @profession.strikes
+      @stealth = @race.stealth + @profession.stealth
+      @awareness = @race.awareness + @profession.awareness
+      @health_regen = @race.health_regen + @profession.health_regen
+      @mana_regen = @race.mana_regen + @profession.mana_regen
+      
     end
     
     def modifier(symbol)
@@ -49,7 +41,6 @@ module Sanguine
       total = self.effects.modifier(symbol)
       # add all the modifiers given by equipment
       total = total + self.equipment.modifier(symbol)
-      total  #tODO is this necessary or will it return just last 
     end
     
     # returns resistance value for a given symbol
@@ -70,15 +61,6 @@ module Sanguine
     def fire(target)
       # remove ammunition
       self.equipment.use_ammunition
-      
-      # TODO: decide whether to implement this
-      # have xp bonus plus IMPERIAL STORMTROOPER MEssage 1/10000 chance when miss
-       #random = 0.001
-      # if random > 0.9999
-       #  messages << "Only Imperial Stormtroopers are so precise!"
-         # gain xp
-      # end
-       
       super(target)
     end
     
@@ -107,9 +89,7 @@ module Sanguine
     end
     
     def gain_exp(amount)
-      
       @exp += amount
-      @total_exp += amount
       
       if self.level?
         self.level_up
